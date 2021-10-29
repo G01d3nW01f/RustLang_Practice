@@ -52,14 +52,19 @@ fn main(){
                         let msg = buff.into_iter().take_while(|&x| x != 0).collect::<Vec<_>>();
                         let msg = String::from_utf8(msg).expect("Invalid utf8 message");
                         
-                        println!("closing connection with: {}",addr);
+                        println!("{}: {:?}",addr,msg);
+                        tx.send(msg).expect("[!]Failed to send message");
+                    },
+                    Err(ref err) if err.kind() == ErrorKind::WouldBlock => (),
+                    Err(_) => {
+                        println!("Closing Connection with: {}",addr);
                         break;
                     }
                 }
                 sleep();
             });
         }
-        if let Ok(msg) => rx.try_recv(){
+        if let Ok(msg) = rx.try_recv(){
             clients = clients.into_iter().filter_map(|mut client|{
                 let mut buff = msg.clone().into_bytes();
                 buff.resize(MSG_SIZE,0);
@@ -69,6 +74,3 @@ fn main(){
         sleep();
     }
 }
-      
-      //error remain 
-      //require the fix 
