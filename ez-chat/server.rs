@@ -6,6 +6,7 @@ use std::thread;
 const LOCAL: &str = "127.0.0.1:6000";
 const MSG_SIZE: usize = 32;
 
+
 fn banner_show(){
     
     let banner = "
@@ -24,40 +25,38 @@ fn banner_show(){
 
 
 fn sleep(){
-    println!("[!]Sleeping...100miliSec");
     thread::sleep(::std::time::Duration::from_millis(100));
-    
 }
 
 fn main(){
+
     banner_show();
-    
-    
-    let server = TcpListener::bind(LOCAL).expect("[!]Listener failed to bind");
-    server.set_nonblocking(true).expect("[!]failed to initialize");
+    println!("[+]StartServer!!!!!Woohoooo");
+    let server = TcpListener::bind(LOCAL).expect("[!]ListenerFailed!!!");
+    server.set_nonblocking(true).expect("[!]Failed to initialize non-blocking!");
     
     let mut clients = vec![];
     let (tx,rx) = mpsc::channel::<String>();
     loop{
-        if let Ok((mut socket, addr)) = server.accept(){
+        if let Ok((mut socket,addr)) = server.accept(){
             println!("[+]Client {} Connected",addr);
             
             let tx = tx.clone();
-            clients.push(socket.try_clone().expect("[!]failed to clone client"));
+            clients.push(socket.try_clone().expect("[!]Failed_to_Clone_Client!!!!!"));
             
-            thread::spawn(move || loop{
+            thread::spawn(move || loop {
                 let mut buff = vec![0; MSG_SIZE];
                 match socket.read_exact(&mut buff){
                     Ok(_) => {
                         let msg = buff.into_iter().take_while(|&x| x != 0).collect::<Vec<_>>();
-                        let msg = String::from_utf8(msg).expect("Invalid utf8 message");
+                        let msg = String::from_utf8(msg).expect("[!]Invalid utf8");
                         
                         println!("{}: {:?}",addr,msg);
-                        tx.send(msg).expect("[!]Failed to send message");
+                        tx.send(msg).expect("[!]Failed send msg");
                     },
                     Err(ref err) if err.kind() == ErrorKind::WouldBlock => (),
                     Err(_) => {
-                        println!("Closing Connection with: {}",addr);
+                        println!("[-]Closing connection with: {}",addr);
                         break;
                     }
                 }
@@ -68,6 +67,7 @@ fn main(){
             clients = clients.into_iter().filter_map(|mut client|{
                 let mut buff = msg.clone().into_bytes();
                 buff.resize(MSG_SIZE,0);
+                
                 client.write_all(&buff).map(|_| client).ok()
             }).collect::<Vec<_>>();
         }
