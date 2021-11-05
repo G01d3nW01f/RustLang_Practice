@@ -1,4 +1,4 @@
-use std::io::{Read,Write,BufReader,BufWriter,BufRead};
+use std::io::{Write,BufReader,BufWriter,BufRead};
 use std::net::{TcpStream,ToSocketAddrs};
 use url::quirks::{host,port};
 
