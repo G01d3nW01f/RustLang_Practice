@@ -1,6 +1,8 @@
 use std::io::{Write,BufReader,BufWriter,BufRead};
 use std::net::{TcpStream,ToSocketAddrs};
-use url::quirks::{host,port};
+
+const LOCAL_HOST: &str = "127.0.0.1";
+const PORT_NUMBE: u32  = 8000;
 
 
 fn read_something (reader: &mut BufReader<&TcpStream>) {
@@ -19,10 +21,7 @@ fn write_something (writer: &mut BufWriter<&TcpStream>, comment: &str) {
 
 fn main() {
 
-    let host = "localhost";
-    let port = 8000;
-    
-    let host_and_port = format!("{}:{}", host, port);
+    let host_and_port = format!("{}:{}", LOCAL_HOST, PORT_NUMBE);
     let mut addrs = host_and_port.to_socket_addrs().unwrap();
 
     if let Some(addr) = addrs.find(|x| (*x).is_ipv4()) {
