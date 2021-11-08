@@ -26,33 +26,33 @@
 # Sample
     '''rust
         fn get_value_failed(value: bool, result: &mut usize) -> bool{
-    if value {
-        *result = 1000;
-        true
-        }else{
-            false
+        if value {
+            *result = 1000;
+            true
+            }else{
+                false
+            }
         }
-    }
 
-fn get_value_success(value: bool) -> Option<usize>{
-    if value {
+        fn get_value_success(value: bool) -> Option<usize>{
+        if value {
         Some(1000)
-        }else{
-            None
+            }else{
+                None
+            }
         }
-    }
 
 
-fn main(){
+        fn main(){
     
-    match get_value_success(true){
+        match get_value_success(true){
         Some(result) => { 
         println!("Success: {}",result);
         
         },
         None => println!("Failed"),
             
-    }
-}
+            }
+        }
     ```
     
