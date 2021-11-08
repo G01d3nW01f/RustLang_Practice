@@ -24,7 +24,7 @@
     
     
 # Sample
-    '''rust
+'''rust
         fn get_value_failed(value: bool, result: &mut usize) -> bool{
         if value {
             *result = 1000;
@@ -54,5 +54,5 @@
             
             }
         }
-    ```
+```
     
