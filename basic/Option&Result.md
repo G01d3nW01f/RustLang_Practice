@@ -1,4 +1,4 @@
-# Option<T> types
+# Option\<T\> types
 
 ## option and result is important type in RustLang. Both these are so similar,
 but it is not a same.
