@@ -6,9 +6,9 @@
 
 
 ## Option<T> types are enum type of Values that may not be retrieved
-    None is not value
-    Some(T) is got the something to value 
-    None is not a error
+None is not value
+Some(T) is got the something to value 
+None is not a error
 
 ```rust
   pub enum Opton<T>{
@@ -17,14 +17,14 @@
   }
  ```
     
-    if you want to error appear,
-    then you should use the Result<T,E> types.
+# if you want to error appear,
+# then you should use the Result<T,E> types.
 
     
     
     
 # Sample
-'''rust
+```rust
         fn get_value_failed(value: bool, result: &mut usize) -> bool{
         if value {
             *result = 1000;
