@@ -16,4 +16,43 @@
     Some(T),
   }
  ```
+    
+    if you want to error appear,
+    then you should use the Result<T,E> types.
 
+    
+    
+    
+# Sample
+    '''rust
+        fn get_value_failed(value: bool, result: &mut usize) -> bool{
+    if value {
+        *result = 1000;
+        true
+        }else{
+            false
+        }
+    }
+
+fn get_value_success(value: bool) -> Option<usize>{
+    if value {
+        Some(1000)
+        }else{
+            None
+        }
+    }
+
+
+fn main(){
+    
+    match get_value_success(true){
+        Some(result) => { 
+        println!("Success: {}",result);
+        
+        },
+        None => println!("Failed"),
+            
+    }
+}
+    ```
+    
