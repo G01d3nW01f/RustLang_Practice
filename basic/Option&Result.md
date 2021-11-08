@@ -79,7 +79,7 @@ then you should use the Result<T,E> types.
     }
  ```
 
-##Sample
+## Sample
     
 ```rust
     
