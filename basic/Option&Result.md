@@ -1,6 +1,7 @@
 # OPTION and RESULT
 
-## option and result is important type in RustLangBoth these are so similar, but it is not a same.
+## option and result is important type in RustLangBoth these are so similar, 
+   but it is not a same.
    so we have to switch the use depending on the case
 
 
