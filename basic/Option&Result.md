@@ -78,3 +78,40 @@ then you should use the Result<T,E> types.
         Err(E),
     }
  ```
+
+##Sample
+    
+```rust
+    
+    fn get_value_failed(value: bool, result: &mut usize) -> usize{
+        if value{
+            *result = 1000;
+            0
+        }else{
+            1
+        }
+    }
+
+    fn get_value_success(value: bool) -> Result<usize,&'static str>{
+        if value{
+            Ok(1000)
+        }else{
+            Err("error message")
+        }
+    }
+
+    fn main(){
+        let mut result = 0;
+        if get_value_failed(true, &mut result) == 0{
+            println!("Success: {}",result);
+        }else{
+            println!("Failed!!!!");
+        }
+    
+        match get_value_success(true){
+            Ok(result) => println!("Success: {}",result),
+            Err(msg) => println!("Failer: {}",msg),
+        }
+    }
+```
+    
