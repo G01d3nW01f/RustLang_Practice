@@ -58,3 +58,23 @@ then you should use the Result<T,E> types.
         }
 ```
     
+# Result \<T,E\> types
+        Result<T,E> is an enumerated type 
+        that represents the result of an operation that may fail.
+
+        Result is given special treatment by the rust compiler,
+        and ignoring it will result in a warinig.
+
+        Result is the standard error handling method in trust,
+        with no exceptions.
+        If there is a possibility of an error, you should use Result for the result.
+    
+## Overview
+    
+ ```rust
+    
+    pub fn Result<T,E>{
+        Ok(T),
+        Err(E),
+    }
+ ```
