@@ -1,8 +1,8 @@
 # OPTION and RESULT
 
-## option and result is important type in RustLang. Both these are so similar, 
-## but it is not a same.
-## so we have to switch the use depending on the case
+## option and result is important type in RustLang. Both these are so similar,
+but it is not a same.
+so we have to switch the use depending on the case
 
 
 ## Option<T> types are enum type of Values that may not be retrieved
@@ -17,8 +17,8 @@ None is not a error
   }
  ```
     
-# if you want to error appear,
-# then you should use the Result<T,E> types.
+if you want to error appear,
+then you should use the Result<T,E> types.
 
     
     
