@@ -47,6 +47,13 @@ then you should use the Result<T,E> types.
 
         fn main(){
     
+        let mut result = 0;
+        if get_value_failed(true, &mut result) {
+            println!("success: {}", result);
+        } else {
+            println!("failure");
+        }
+    
         match get_value_success(true){
         Some(result) => { 
         println!("Success: {}",result);
